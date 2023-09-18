@@ -4,7 +4,7 @@ from scrapy.exceptions import ContractFail
 
 class ValidatorContract(Contract):
     """
-    Demo contract which checks the presence of a custom header
+    Contract to validate the output of the Books spider
     @valid title price rating img
     """
 
