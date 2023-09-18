@@ -31,7 +31,7 @@ class BookSpider(scrapy.Spider):
                 title=book.xpath('.//a[@title]/@title').get(),
                 price=book.xpath(".//p[@class='price_color']/text()").get(),
                 rating=self.to_int(book.xpath(".//p[contains(@class, 'star-rating')]/@class").get()),
-                img=book.xpath("./div/a/@href").get()
+                img=response.urljoin(book.xpath("./div/a/@href").get(''))
             )
             print('-------------------')
 
