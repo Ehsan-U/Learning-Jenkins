@@ -1,5 +1,6 @@
 from scrapy.contracts import Contract
 from scrapy.exceptions import ContractFail
+from scrapy import Request
 
 
 class ValidatorContract(Contract):
@@ -12,6 +13,7 @@ class ValidatorContract(Contract):
 
     def post_process(self, output):
         for item in output:
-            if 'http' not in item.get("img",''):
-                raise ContractFail(f"Invalid img url: {item.get('img')}")
+            if not isinstance(item, Request):
+                if 'http' not in item.get("img",''):
+                    raise ContractFail(f"Invalid img url: {item.get('img')}")
         return output
